@@ -1,0 +1,390 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+
+      <div class="hero-pill">
+        <span class="dot"></span>
+        <span>Crypto MCP · v1.0.2 · Live</span>
+      </div>
+
+      <h1 class="hero-title">
+        Real-time data<br/>for <span class="accent">AI assistants.</span>
+      </h1>
+
+      <p class="hero-desc">
+        LLMs have no internet access and no live data. LogicRoomX bridges that gap —
+        MCP plugins that give AI what it can't know on its own.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/plugins/crypto" class="btn btn--primary btn--lg">Explore Crypto Plugin →</a>
+        <a href="https://github.com/logicroomx/logicroomx-mcp" class="btn btn--outline btn--lg" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+
+      <div class="hero-endpoint">
+        <span class="ep-label">MCP Endpoint</span>
+        <code>https://api.logicroomx.com/mcp</code>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIVIDER LINE -->
+  <div class="container"><hr/></div>
+
+  <!-- WHAT LLMS CAN'T DO -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">The Problem</span>
+        <h2 class="section-title">What LLMs physically can't do</h2>
+        <p class="section-desc">No matter how capable, every AI hits the same wall.</p>
+      </div>
+
+      <div class="cards-3">
+        <div class="card">
+          <div class="card-icon">⏱</div>
+          <h3>Training cutoffs</h3>
+          <p>Models are trained on data up to a fixed date. Prices, rates, and exchange status change every second.</p>
+        </div>
+        <div class="card card--accent">
+          <div class="card-icon">🔌</div>
+          <h3>No internet access</h3>
+          <p>Out of the box, LLMs can't call external APIs. MCP is the protocol that solves this cleanly.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📡</div>
+          <h3>LogicRoomX fills the gap</h3>
+          <p>Our plugins connect AI to live data — in any industry. Start with crypto, more coming.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="container"><hr/></div>
+
+  <!-- PLUGIN -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Available Now</span>
+        <h2 class="section-title">Crypto MCP Plugin</h2>
+        <p class="section-desc">Four tools. Live data from Binance and OKX. No API key required.</p>
+      </div>
+
+      <div class="tools-grid">
+        <a href="/plugins/crypto" class="tool-row">
+          <code class="tool-name">get_spread</code>
+          <span class="tool-desc">Real-time price spread between Binance and OKX. Includes net spread after fees and profitability verdict.</span>
+          <span class="tool-arrow">→</span>
+        </a>
+        <a href="/plugins/crypto" class="tool-row">
+          <code class="tool-name">get_funding_rate</code>
+          <span class="tool-desc">Current perpetual funding rates. 8h rate, annualized yield, next settlement time.</span>
+          <span class="tool-arrow">→</span>
+        </a>
+        <a href="/plugins/crypto" class="tool-row">
+          <code class="tool-name">get_cash_carry</code>
+          <span class="tool-desc">Cash & Carry arbitrage calculator. Buy spot + short perp = funding income, near-zero market risk.</span>
+          <span class="tool-arrow">→</span>
+        </a>
+        <a href="/plugins/crypto" class="tool-row">
+          <code class="tool-name">get_exchange_status</code>
+          <span class="tool-desc">Live operational status of Binance and OKX. API reachability and maintenance incidents.</span>
+          <span class="tool-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="plugin-cta">
+        <a href="/plugins/crypto" class="btn btn--outline">View full docs →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="container"><hr/></div>
+
+  <!-- HOW TO CONNECT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Integration</span>
+        <h2 class="section-title">Connected in 3 steps</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-n">01</span>
+          <h3>Open your AI assistant</h3>
+          <p>Works with Claude Desktop or any MCP-compatible client.</p>
+        </div>
+        <div class="step-sep">—</div>
+        <div class="step">
+          <span class="step-n">02</span>
+          <h3>Add the endpoint</h3>
+          <p>Paste <code>https://api.logicroomx.com/mcp</code> as a custom connector. No API key needed.</p>
+        </div>
+        <div class="step-sep">—</div>
+        <div class="step">
+          <span class="step-n">03</span>
+          <h3>Ask anything live</h3>
+          <p>"What's the BTC funding rate on Binance right now?" — answered instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="container"><hr/></div>
+
+  <!-- COMING SOON -->
+  <section class="section--sm">
+    <div class="container">
+      <div class="coming-row">
+        <div>
+          <span class="section-eyebrow">What's next</span>
+          <h3 style="font-size:1.1rem; font-weight:600; color:var(--text);">Logistics MCP — coming soon</h3>
+          <p style="font-size:0.9rem; margin-top:0.35rem;">Live shipping rates, freight indices, and carrier status for AI-powered supply chain tools.</p>
+        </div>
+        <span class="tag tag--gray">In development</span>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+/* HERO */
+.hero {
+  padding: 6rem 0 5rem;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 20px;
+  padding: 0.3rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-title {
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  max-width: 16ch;
+}
+
+.accent { color: var(--accent); }
+
+.hero-desc {
+  font-size: 1.05rem;
+  max-width: 500px;
+  color: var(--text-muted);
+  margin-bottom: 2.25rem;
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.hero-endpoint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+}
+
+.ep-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.hero-endpoint code {
+  font-size: 0.82rem;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* SECTION HEADER */
+.section-header { margin-bottom: 2.5rem; }
+
+/* CARDS */
+.cards-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.card {
+  background: var(--bg-2);
+  padding: 2rem;
+}
+
+.card--accent {
+  background: var(--bg-3);
+  position: relative;
+}
+
+.card--accent::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+.card-icon { font-size: 1.4rem; margin-bottom: 1rem; }
+
+.card h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.card p { font-size: 0.875rem; line-height: 1.65; margin: 0; }
+
+/* TOOLS */
+.tools-grid {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tool-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: background 0.15s;
+  color: inherit;
+}
+
+.tool-row:last-child { border-bottom: none; }
+
+.tool-row:hover { background: var(--bg-hover); }
+
+.tool-row:hover .tool-arrow { transform: translateX(4px); color: var(--accent); }
+
+.tool-name {
+  font-size: 0.82rem;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+  min-width: 180px;
+}
+
+.tool-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  flex: 1;
+  line-height: 1.55;
+}
+
+.tool-arrow {
+  color: var(--text-dim);
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.plugin-cta { margin-top: 1.25rem; }
+
+/* STEPS */
+.steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.step { flex: 1; min-width: 200px; }
+
+.step-n {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.06em;
+}
+
+.step h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.step p { font-size: 0.875rem; margin: 0; line-height: 1.6; }
+
+.step-sep {
+  color: var(--text-dim);
+  padding-top: 1.8rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .step-sep { display: none; }
+  .tool-name { min-width: 140px; }
+}
+
+/* COMING SOON */
+.coming-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+}
+</style>

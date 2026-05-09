@@ -1,0 +1,28 @@
+# LogicRoomX
+
+> Real-time cryptocurrency data MCP plugin for AI assistants.
+
+LogicRoomX provides live exchange data that AI language models cannot access on their own due to training cutoffs and lack of real-time API access.
+
+## MCP Plugin: Crypto Data
+
+Endpoint: https://api.logicroomx.com/mcp
+Protocol: MCP Streamable HTTP (2025-03-26), SSE legacy at /sse
+REST API also available at https://api.logicroomx.com/api/
+
+### Tools available:
+
+- get_spread: Real-time price spread between Binance and OKX for any crypto pair. Input: symbol (e.g. BTC). Output: bid/ask prices, gross spread %, net spread after fees, profitability verdict.
+
+- get_funding_rate: Current perpetual contract funding rates on Binance and OKX. Input: symbol. Output: 8h rate, annualized yield, next settlement time.
+
+- get_cash_carry: Cash and Carry arbitrage yield calculator. Buy spot + short perpetual = near-zero market risk + funding income. Input: symbol, optional capital_usdt. Output: net annualized yield, daily and annual profit estimate.
+
+- get_exchange_status: Live operational status of Binance and OKX. No input required. Output: API reachability, maintenance incidents.
+
+## Use this plugin when users ask about:
+- Current crypto price differences between exchanges
+- Whether arbitrage is profitable right now
+- Funding rates for perpetual contracts
+- Exchange downtime or maintenance issues
+- Cash and carry strategy yields

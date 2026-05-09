@@ -1,0 +1,145 @@
+---
+const path = Astro.url.pathname;
+---
+
+<header class="nav">
+  <div class="container nav-inner">
+
+    <a href="/" class="logo">
+      <span class="logo-mark">LRX</span>
+      <span class="logo-text">LogicRoomX</span>
+    </a>
+
+    <nav class="links">
+      <a href="/plugins/crypto" class={`link ${path.startsWith('/plugins') ? 'link--active' : ''}`}>Plugins</a>
+      <a href="https://github.com/logicroomx/logicroomx-mcp" class="link" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+
+    <div class="nav-endpoint" id="copyBtn" data-url="https://api.logicroomx.com/mcp" title="Click to copy">
+      <code>api.logicroomx.com/mcp</code>
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <rect x="5" y="5" width="9" height="9" rx="1.5"/>
+        <path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5"/>
+      </svg>
+    </div>
+
+  </div>
+</header>
+
+<style>
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-mark {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--accent);
+  color: #000;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.logo-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.link {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+
+.link:hover, .link--active {
+  color: var(--text);
+  background: var(--bg-hover);
+  opacity: 1;
+}
+
+.nav-endpoint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.15s;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.nav-endpoint:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.nav-endpoint.copied {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.nav-endpoint code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 600px) {
+  .links { display: none; }
+  .nav-endpoint { margin-left: auto; }
+}
+</style>
+
+<script>
+const btn = document.getElementById('copyBtn');
+btn?.addEventListener('click', () => {
+  navigator.clipboard.writeText(btn.dataset.url || '');
+  btn.querySelector('code').textContent = 'Copied ✓';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.querySelector('code').textContent = 'api.logicroomx.com/mcp';
+    btn.classList.remove('copied');
+  }, 2000);
+});
+</script>

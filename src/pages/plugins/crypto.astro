@@ -1,0 +1,469 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Crypto MCP Plugin — LogicRoomX"
+  description="Real-time crypto data for AI: price spread, funding rates, cash & carry arbitrage, and exchange status from Binance and OKX."
+>
+
+  <!-- HEADER -->
+  <section class="section" style="padding-bottom: 3rem; border-bottom: 1px solid var(--border);">
+    <div class="container">
+
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Crypto MCP</span>
+      </div>
+
+      <div class="page-top">
+        <div>
+          <div class="badges">
+            <span class="tag tag--green">Live</span>
+            <span class="tag tag--gray">v1.0.2</span>
+          </div>
+          <h1 class="page-title">Crypto MCP Plugin</h1>
+          <p class="page-desc">Real-time data from Binance and OKX — price spreads, funding rates, arbitrage yields, and exchange status. No API key required.</p>
+        </div>
+        <div class="page-actions">
+          <a href="https://github.com/logicroomx/logicroomx-mcp" class="btn btn--outline" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="endpoint-bar">
+        <div class="ep-item">
+          <span class="ep-label">MCP Endpoint</span>
+          <code>https://api.logicroomx.com/mcp</code>
+        </div>
+        <div class="ep-sep"></div>
+        <div class="ep-item">
+          <span class="ep-label">REST API</span>
+          <code>https://api.logicroomx.com/api/</code>
+        </div>
+        <div class="ep-sep"></div>
+        <div class="ep-item">
+          <span class="ep-label">Protocol</span>
+          <code>MCP Streamable HTTP · SSE legacy</code>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="section">
+    <div class="container">
+      <span class="section-eyebrow">Tools</span>
+      <h2 class="section-title">4 tools available</h2>
+
+      <div class="tool-list">
+
+        <!-- get_spread -->
+        <div class="tool">
+          <div class="tool-head">
+            <code class="tool-name">get_spread</code>
+            <span class="tag tag--blue">Binance · OKX</span>
+          </div>
+          <p class="tool-desc">Real-time price spread between Binance and OKX. Returns bid/ask on both exchanges, gross spread %, net spread after fees, and a profitability verdict.</p>
+
+          <div class="param-table">
+            <div class="param-row param-row--head">
+              <span>Parameter</span><span>Type</span><span>Required</span><span>Description</span>
+            </div>
+            <div class="param-row">
+              <code>symbol</code><span>string</span><span class="req">✓</span><span>BTC, ETH, SOL, etc.</span>
+            </div>
+            <div class="param-row">
+              <code>taker_fee</code><span>number</span><span>—</span><span>Fee per side as decimal. Default: 0.001</span>
+            </div>
+          </div>
+
+          <div class="example-block">
+            <div class="example-label">Example response</div>
+            <pre><code>{`{
+  "symbol": "BTC/USDT",
+  "binance": { "bid": 80813.28, "ask": 80813.29 },
+  "okx":     { "bid": 80827.20, "ask": 80827.30 },
+  "spread":  { "gross_pct": "0.0172%", "net_pct": "-0.1828%", "profitable": false },
+  "verdict": "Not profitable after 0.200% fees"
+}`}</code></pre>
+          </div>
+
+          <div class="rest-bar">
+            <span class="ep-label">REST</span>
+            <code>GET https://api.logicroomx.com/api/spread?symbol=BTC</code>
+          </div>
+        </div>
+
+        <!-- get_funding_rate -->
+        <div class="tool">
+          <div class="tool-head">
+            <code class="tool-name">get_funding_rate</code>
+            <span class="tag tag--blue">Perpetuals</span>
+          </div>
+          <p class="tool-desc">Current perpetual contract funding rates on Binance and OKX. Returns 8h rate, annualized yield, next settlement time, and which exchange pays more.</p>
+
+          <div class="param-table">
+            <div class="param-row param-row--head">
+              <span>Parameter</span><span>Type</span><span>Required</span><span>Description</span>
+            </div>
+            <div class="param-row">
+              <code>symbol</code><span>string</span><span class="req">✓</span><span>BTC, ETH, SOL, etc.</span>
+            </div>
+          </div>
+
+          <div class="rest-bar">
+            <span class="ep-label">REST</span>
+            <code>GET https://api.logicroomx.com/api/funding-rate?symbol=BTC</code>
+          </div>
+        </div>
+
+        <!-- get_cash_carry -->
+        <div class="tool">
+          <div class="tool-head">
+            <code class="tool-name">get_cash_carry</code>
+            <span class="tag tag--blue">Arbitrage</span>
+          </div>
+          <p class="tool-desc">Cash & Carry arbitrage yield calculator. Strategy: buy spot + short perpetual = collect funding rate with near-zero market risk. Returns gross/net annualized yield and estimated daily/annual profit.</p>
+
+          <div class="param-table">
+            <div class="param-row param-row--head">
+              <span>Parameter</span><span>Type</span><span>Required</span><span>Description</span>
+            </div>
+            <div class="param-row">
+              <code>symbol</code><span>string</span><span class="req">✓</span><span>BTC, ETH, SOL, etc.</span>
+            </div>
+            <div class="param-row">
+              <code>capital_usdt</code><span>number</span><span>—</span><span>Capital in USDT to estimate profit amounts</span>
+            </div>
+          </div>
+
+          <div class="rest-bar">
+            <span class="ep-label">REST</span>
+            <code>GET https://api.logicroomx.com/api/cash-carry?symbol=BTC&capital_usdt=10000</code>
+          </div>
+        </div>
+
+        <!-- get_exchange_status -->
+        <div class="tool">
+          <div class="tool-head">
+            <code class="tool-name">get_exchange_status</code>
+            <span class="tag tag--blue">Status</span>
+          </div>
+          <p class="tool-desc">Live operational status of Binance and OKX. Returns API reachability, system status, and any active maintenance incidents. No input required.</p>
+
+          <div class="param-table">
+            <div class="param-row param-row--head">
+              <span>Parameter</span><span>Type</span><span>Required</span><span>Description</span>
+            </div>
+            <div class="param-row param-row--none">
+              <span style="color:var(--text-dim); font-size:0.85rem;">No parameters required.</span>
+            </div>
+          </div>
+
+          <div class="rest-bar">
+            <span class="ep-label">REST</span>
+            <code>GET https://api.logicroomx.com/api/exchange-status</code>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr/></div>
+
+  <!-- HOW TO CONNECT -->
+  <section class="section">
+    <div class="container">
+      <span class="section-eyebrow">Integration</span>
+      <h2 class="section-title">How to connect</h2>
+
+      <div class="int-grid">
+
+        <div class="int-card">
+          <h3>Claude Desktop</h3>
+          <ol>
+            <li>Open Claude Desktop</li>
+            <li>Go to Customize → Connectors → +</li>
+            <li>Click <strong>Add custom connector</strong></li>
+            <li>Name: <code>LogicRoomX Crypto</code></li>
+            <li>URL: <code>https://api.logicroomx.com/mcp</code></li>
+          </ol>
+        </div>
+
+        <div class="int-card">
+          <h3>Any MCP client</h3>
+          <pre><code>Endpoint: https://api.logicroomx.com/mcp
+Protocol: MCP Streamable HTTP (2025-03-26)
+Legacy SSE: https://api.logicroomx.com/sse</code></pre>
+        </div>
+
+        <div class="int-card">
+          <h3>REST API</h3>
+          <pre><code>GET /api/spread?symbol=BTC
+GET /api/funding-rate?symbol=ETH
+GET /api/cash-carry?symbol=BTC
+GET /api/exchange-status</code></pre>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr/></div>
+
+  <!-- CHANGELOG -->
+  <section class="section--sm">
+    <div class="container--narrow">
+      <span class="section-eyebrow">Changelog</span>
+      <h2 class="section-title">What's new</h2>
+
+      <div class="changelog">
+        <div class="cl-row">
+          <div class="cl-meta"><span class="tag tag--green">v1.0.2</span><span class="cl-date">2026-05-06</span></div>
+          <p>Migrated to MCP Streamable HTTP (2025-03-26 spec). Legacy SSE kept for compatibility. Fixed multiple concurrent connections.</p>
+        </div>
+        <div class="cl-row">
+          <div class="cl-meta"><span class="tag tag--gray">v1.0.1</span><span class="cl-date">2026-05-06</span></div>
+          <p>Fixed server crash on multiple SSE connections.</p>
+        </div>
+        <div class="cl-row">
+          <div class="cl-meta"><span class="tag tag--gray">v1.0.0</span><span class="cl-date">2026-05-05</span></div>
+          <p>Initial release. Four tools: get_spread, get_funding_rate, get_cash_carry, get_exchange_status.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+/* BREADCRUMB */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 1.75rem;
+}
+.breadcrumb a { color: var(--text-muted); text-decoration: none; }
+.breadcrumb a:hover { color: var(--text); opacity: 1; }
+
+/* PAGE TOP */
+.page-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.badges { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+
+.page-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.75rem;
+}
+
+.page-desc { font-size: 1rem; max-width: 520px; margin: 0; }
+
+.page-actions { display: flex; gap: 0.75rem; padding-top: 1.5rem; flex-shrink: 0; }
+
+/* ENDPOINT BAR */
+.endpoint-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.25rem;
+  flex-wrap: wrap;
+}
+
+.ep-item { display: flex; align-items: center; gap: 0.6rem; }
+
+.ep-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.ep-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* TOOLS */
+.tool-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.tool {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  background: var(--bg-2);
+}
+
+.tool-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.tool-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.tool-desc { font-size: 0.9rem; margin-bottom: 1.25rem; }
+
+/* PARAM TABLE */
+.param-table {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.param-row {
+  display: grid;
+  grid-template-columns: 160px 70px 80px 1fr;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  align-items: center;
+}
+
+.param-row:last-child { border-bottom: none; }
+
+.param-row--head {
+  background: var(--bg-3);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.param-row--none {
+  grid-template-columns: 1fr;
+  padding: 0.75rem 1rem;
+}
+
+.param-row code { color: var(--accent); background: none; border: none; padding: 0; }
+.req { color: var(--accent); }
+
+/* EXAMPLE */
+.example-block { margin-bottom: 1rem; }
+.example-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 0.4rem;
+}
+
+/* REST BAR */
+.rest-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.9rem;
+}
+.rest-bar code { color: var(--text-muted); background: none; border: none; padding: 0; font-size: 0.8rem; }
+
+/* INTEGRATION */
+.int-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.int-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.int-card h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 1rem 1.25rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.int-card ol {
+  padding: 1rem 1.25rem;
+  padding-left: 2.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.int-card pre { border-radius: 0; font-size: 0.8rem; margin: 0; }
+
+/* CHANGELOG */
+.changelog {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.cl-row {
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.cl-row:last-child { border-bottom: none; }
+
+.cl-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.cl-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.cl-row p { font-size: 0.875rem; margin: 0; }
+
+@media (max-width: 640px) {
+  .param-row { grid-template-columns: 130px 60px 1fr; }
+  .param-row > span:nth-child(3) { display: none; }
+  .endpoint-bar { gap: 0.75rem; }
+  .ep-sep { display: none; }
+}
+</style>

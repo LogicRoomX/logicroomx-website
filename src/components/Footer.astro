@@ -1,0 +1,124 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+
+    <div class="footer-left">
+      <a href="/" class="footer-logo">
+        <span class="logo-mark">LRX</span>
+        <span>LogicRoomX</span>
+      </a>
+      <p class="footer-desc">Real-time data plugins for AI assistants.</p>
+      <p class="footer-copy">© {year} LogicRoomX</p>
+    </div>
+
+    <div class="footer-links">
+      <span class="footer-group-label">Plugins</span>
+      <a href="/plugins/crypto">Crypto MCP</a>
+    </div>
+
+    <div class="footer-links">
+      <span class="footer-group-label">Links</span>
+      <a href="https://github.com/logicroomx/logicroomx-mcp" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+
+    <div class="footer-endpoint">
+      <span class="footer-group-label">MCP Endpoint</span>
+      <code>api.logicroomx.com/mcp</code>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+.footer {
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  gap: 2.5rem;
+  padding: 3rem 1.5rem 2.5rem;
+  align-items: start;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+.logo-mark {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: var(--accent);
+  color: #000;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.footer-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.footer-group-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 0.6rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer-links a:hover { color: var(--text); opacity: 1; }
+
+.footer-endpoint code {
+  font-size: 0.78rem;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .footer-left { grid-column: 1 / -1; }
+}
+
+@media (max-width: 480px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+</style>

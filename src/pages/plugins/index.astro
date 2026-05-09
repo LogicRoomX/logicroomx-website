@@ -1,0 +1,228 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Plugins — LogicRoomX" description="All real-time MCP plugins by LogicRoomX.">
+  <section class="section">
+    <div class="container">
+      <div class="page-header">
+        <span class="section-eyebrow">All Plugins</span>
+        <h1 class="section-title">MCP Plugins</h1>
+        <p class="section-desc">
+          Each plugin connects AI assistants to a specific category of real-time data via the
+          <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Model Context Protocol</a>.
+        </p>
+      </div>
+
+      <div class="plugin-list">
+        <!-- Crypto -->
+        <a href="/plugins/crypto" class="plugin-row">
+          <div class="plugin-row-icon">₿</div>
+          <div class="plugin-row-info">
+            <div class="plugin-row-top">
+              <h2 class="plugin-row-title">Crypto MCP</h2>
+              <span class="tag tag--green">Live</span>
+            </div>
+            <p class="plugin-row-desc">
+              Real-time price spread, funding rates, cash & carry yields, and exchange status for Binance and OKX.
+            </p>
+            <div class="plugin-row-tools">
+              <span class="tag tag--gray">get_spread</span>
+              <span class="tag tag--gray">get_funding_rate</span>
+              <span class="tag tag--gray">get_cash_carry</span>
+              <span class="tag tag--gray">get_exchange_status</span>
+            </div>
+          </div>
+          <div class="plugin-row-meta">
+            <span class="plugin-row-endpoint"><code>api.logicroomx.com/mcp</code></span>
+            <span class="plugin-row-arrow">→</span>
+          </div>
+        </a>
+
+        <!-- Logistics (coming soon) -->
+        <div class="plugin-row plugin-row--disabled">
+          <div class="plugin-row-icon">🚚</div>
+          <div class="plugin-row-info">
+            <div class="plugin-row-top">
+              <h2 class="plugin-row-title">Logistics MCP</h2>
+              <span class="tag tag--gray">Coming soon</span>
+            </div>
+            <p class="plugin-row-desc">
+              Live shipping rates, freight indices, and carrier status for AI-powered supply chain tools.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Integration box -->
+      <div class="integration-box">
+        <div class="integration-box-header">
+          <h3>Connect any plugin</h3>
+          <p>All plugins share the same endpoint. Connect once, get access to all available tools.</p>
+        </div>
+        <pre><code>MCP Endpoint: https://api.logicroomx.com/mcp
+Protocol:     MCP Streamable HTTP (2025-03-26)
+Legacy SSE:   https://api.logicroomx.com/sse</code></pre>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.page-header {
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+.page-header .section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.plugin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.plugin-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  background: var(--bg);
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.15s ease;
+}
+
+.plugin-row:last-child {
+  border-bottom: none;
+}
+
+a.plugin-row:hover {
+  background: var(--bg-subtle);
+}
+
+a.plugin-row:hover .plugin-row-arrow {
+  transform: translateX(4px);
+}
+
+.plugin-row--disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.plugin-row-icon {
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.plugin-row-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.plugin-row-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.plugin-row-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.plugin-row-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.plugin-row-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.plugin-row-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.plugin-row-endpoint code {
+  font-size: 0.76rem;
+  color: var(--text-light);
+  background: none;
+  padding: 0;
+}
+
+.plugin-row-arrow {
+  color: var(--accent);
+  font-size: 1.1rem;
+  transition: transform 0.15s ease;
+}
+
+.integration-box {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.integration-box-header {
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.integration-box-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.integration-box-header p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.integration-box pre {
+  border-radius: 0;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .plugin-row {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+  .plugin-row-meta {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+</style>
